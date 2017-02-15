@@ -35,42 +35,61 @@
 // });
 
 
-$(document).ready(function(){
-  console.log('the document has loaded');
-
-  //create the color blocks
-  $('#colorBlockSection').append('<div class="colorBlock" id="red" name="red" data-color="red"></div>');
-  $('#red').css({'width':'100px','height':'150px','display':'inline-block','background-color':'red'});
-  $('#colorBlockSection').append('<div class="colorBlock" id="blue" name="blue" data-color="blue" ></div>');
-  $('#blue').css({'width':'100px','height':'150px','display':'inline-block','background-color':'blue'});
-  $('#colorBlockSection').append('<div class="colorBlock" id="green" name="green" data-color="green"></div>');
-  $('#green').css({'width':'100px','height':'150px','display':'inline-block','background-color':'green'});
-  $('#colorBlockSection').append('<div class="colorBlock" id="yellow" name="yellow" data-color="yellow"></div>');
-  $('#yellow').css({'width':'100px','height':'150px','display':'inline-block','background-color':'yellow'});
-  $('#colorBlockSection').append('<div class="colorBlock" id="purple" name="purple" data-color="purple"></div>');
-  $('#purple').css({'width':'100px','height':'150px','display':'inline-block','background-color':'purple'});
-
-  //create the listener to check for any clicks in each div
-
-  $('.colorBlock').on('click',function(){
-    console.log($(this).data('color')); //console log test to confirm correct color is logged
-  })
-
-
-
-
-
-//ask the user to click on a random color
-  alert("I have a favorite color. It's your job to guess what it is...click on your guess as to what color here makes my circuits hum");
-
-
-
-
-});
-
-
+//random number generator
 function randomNumber(min, max){
      return Math.floor(Math.random() * (1 + max - min) + min);
    }
 
-var winningColor = randomNumber(0,5));
+//sets the winning color to the color with the id that corresponds to the random number
+var winningColor = '';
+var winningColorId = randomNumber(0,4);
+
+if(winningColorId == 0){
+  winningColor = 'red'
+}
+if(winningColorId == 1){
+  winningColor = 'blue'
+}
+if(winningColorId == 2){
+  winningColor = 'green'
+}
+if(winningColorId == 3){
+  winningColor = 'yellow'
+}
+if(winningColorId == 4){
+  winningColor = 'purple'
+}
+
+
+
+$(document).ready(function(){
+  console.log('the document has loaded');
+
+  //create the color blocks
+  $('#colorBlockSection').append('<div class="colorBlock" id="0" name="red" data-color="red"></div>');
+  $('#0').css({'width':'100px','height':'150px','display':'inline-block','background-color':'red'});
+  $('#colorBlockSection').append('<div class="colorBlock" id="1" name="blue" data-color="blue" ></div>');
+  $('#1').css({'width':'100px','height':'150px','display':'inline-block','background-color':'blue'});
+  $('#colorBlockSection').append('<div class="colorBlock" id="2" name="green" data-color="green"></div>');
+  $('#2').css({'width':'100px','height':'150px','display':'inline-block','background-color':'green'});
+  $('#colorBlockSection').append('<div class="colorBlock" id="3" name="yellow" data-color="yellow"></div>');
+  $('#3').css({'width':'100px','height':'150px','display':'inline-block','background-color':'yellow'});
+  $('#colorBlockSection').append('<div class="colorBlock" id="4" name="purple" data-color="purple"></div>');
+  $('#4').css({'width':'100px','height':'150px','display':'inline-block','background-color':'purple'});
+
+  //create the listener to check for any clicks in each div
+  //and alerts the user the result
+
+  $('.colorBlock').on('click',function(){
+    console.log('User clicked: ',$(this).data('color')); //console log test to confirm correct color is logged
+    if($(this).data('color') == winningColor){
+      alert("You nailed it!");
+    } else {
+      alert("Try again!");
+    }
+  })
+
+//ask the user to click on a random color
+  alert("I have a favorite color. It's your job to guess what it is...click on your guess as to what color here makes my circuits hum");
+
+});
