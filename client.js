@@ -39,7 +39,6 @@
 function randomNumber(min, max){
      return Math.floor(Math.random() * (1 + max - min) + min);
    }
-
 //sets the winning color to the color with the id that corresponds to the random number
 var winningColor = '';
 var winningColorId = randomNumber(0,4);
@@ -59,8 +58,7 @@ if(winningColorId == 3){
 if(winningColorId == 4){
   winningColor = 'purple'
 }
-
-
+console.log('the winning color is: ',winningColor);
 
 $(document).ready(function(){
   console.log('the document has loaded');
@@ -81,15 +79,31 @@ $(document).ready(function(){
   //and alerts the user the result
 
   $('.colorBlock').on('click',function(){
-    console.log('User clicked: ',$(this).data('color')); //console log test to confirm correct color is logged
+    // console.log('User clicked: ',$(this).data('color'));
     if($(this).data('color') == winningColor){
-      $('#pickedColor').html(winningColor + ', which happens to be my favorite color. You win!');
-    } else {
-      $('#pickedColor').html('the wrong color.  Please try again');
+      $('#pickedColor').html(winningColor + ', which happens to be my favorite color. You win!  I have picked a new ' +
+    'color.  Please try again...');
+    var winningColorId = randomNumber(0,4);
+    console.log(winningColorId);
+    if(winningColorId == 0){
+      winningColor = 'red'
     }
+    if(winningColorId == 1){
+      winningColor = 'blue'
+    }
+    if(winningColorId == 2){
+      winningColor = 'green'
+    }
+    if(winningColorId == 3){
+      winningColor = 'yellow'
+    }
+    if(winningColorId == 4){
+      winningColor = 'purple'
+    }
+    } else {
+      $('#pickedColor').html($(this).data('color') + ', which is not the color I chose.  Please try again');
+    }
+
   })
-
-
-
 
 });
