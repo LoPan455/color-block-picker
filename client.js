@@ -34,32 +34,32 @@
 //
 // });
 
-/*
+
 //random number generator
 function randomNumber(min, max){
-return Math.floor(Math.random() * (1 + max - min) + min);
+  return Math.floor(Math.random() * (1 + max - min) + min);
 }
 //sets the winning color to the color with the id that corresponds to the random number
-var winningColor = '';
-var winningColorId = randomNumber(0,4);
+// var winningColor = '';
+// var winningColorId = randomNumber(0,4);
+//
+// if(winningColorId == 0){
+// winningColor = 'red'
+// }
+// if(winningColorId == 1){
+// winningColor = 'blue'
+// }
+// if(winningColorId == 2){
+// winningColor = 'green'
+// }
+// if(winningColorId == 3){
+// winningColor = 'yellow'
+// }
+// if(winningColorId == 4){
+// winningColor = 'purple'
+// }
+// console.log('the winning color is: ',winningColor);
 
-if(winningColorId == 0){
-winningColor = 'red'
-}
-if(winningColorId == 1){
-winningColor = 'blue'
-}
-if(winningColorId == 2){
-winningColor = 'green'
-}
-if(winningColorId == 3){
-winningColor = 'yellow'
-}
-if(winningColorId == 4){
-winningColor = 'purple'
-}
-console.log('the winning color is: ',winningColor);
-*/
 var colorChoices = []; //stores all the color choices and their attributes
 var colorId = 0;
 
@@ -78,14 +78,39 @@ $(document).ready(function(){
       var inputColorObject = colorArray[i];
       newColorObject[inputColorObject.name] = inputColorObject.value;
       newColorObject.id = colorId;
-      colorId++;
-      colorChoices.push(newColorObject);
+      colorId++;  //increments in preparation to tie an ID to the next color block
     }
-    $('.colorBlock').remove();
+    colorChoices.push(newColorObject);  //stores the new color in the colorChoices
+    console.log(colorChoices);
+    $('.colorBlock').remove();  //takes the color blocks off the DOM in prepartion to re-draw the array
+    $('#colorName').val(''); // clears the input field
     for (var i = 0; i < colorChoices.length; i++) {
       var newDiv = $('<div class="colorBlock" id="'+ colorChoices[i].id +'" data-color="'+colorChoices[i].colorName+'">');
       $('#colorBlockSection').append(newDiv);
       $('#'+i).css({'background-color':''+ colorChoices[i].colorName +''});
     }
+
+
+    // sets the winning color to the color with the id that corresponds to the random number
+
+    var winningColorId = randomNumber(0,colorChoices.length - 1);
+    var winningColorName = $('#'+winningColorId).data('color')
+    console.log('the winning color is: ', winningColorName);
+
+    // listener for the click on the correct color block
+
+    $('.colorBlock').on('click',function(){
+      // console.log('User clicked: ',$(this).data('color'));
+      if($(this).data('color') == winningColorName){
+        $('#pickedColor').html(winningColor + ', which happens to be my favorite color. You win!  I have picked a new ' +
+        'color.  Please try again...');
+        var winningColorId = randomNumber(0,colorChoices.length - 1);
+        var winningColorName = $('#'+winningColorId).data('color')
+        console.log('the winning color is: ', winningColorName);
+      } else {
+        $('#pickedColor').html($(this).data('color') + ', which is not the color I chose.  Please try again');
+      }
+    })
+
   });
 });
