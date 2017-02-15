@@ -83,13 +83,13 @@ $(document).ready(function(){
   $('.colorBlock').on('click',function(){
     console.log('User clicked: ',$(this).data('color')); //console log test to confirm correct color is logged
     if($(this).data('color') == winningColor){
-      alert("You nailed it!");
+      $('#pickedColor').html(winningColor + ', which happens to be my favorite color. You win!');
     } else {
-      alert("Try again!");
+      $('#pickedColor').html('the wrong color.  Please try again');
     }
   })
 
-//ask the user to click on a random color
-  alert("I have a favorite color. It's your job to guess what it is...click on your guess as to what color here makes my circuits hum");
+
+
 
 });
