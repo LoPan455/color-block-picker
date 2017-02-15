@@ -9,14 +9,25 @@
 </head>
 <body>
   <h1>Guess My Favorite Color</h1>
-  <p>I have secretly selected a color.  I want you to guess what it is...</p>
+  <section id="colorPickerSection">
+    <h2>Please Select Your Colors</h2>
+    <form>
+      <form>
+        <label for="colorName">Color:</label>
+        <input type="text" name="colorName" placeholder="Color Choice" id="colorName" class="colorFormInput">
+        <button type="submit">Submit</button>
+  </form>
+
+</section>
+
+<p>I have secretly selected a color.  I want you to guess what it is...</p>
 <section id="userPicked">
-  <h2>You have picked <span id="pickedColor">nothing yet</span></h2>
+  <h3>You have picked <span id="pickedColor">nothing yet</span></h3>
 </section>
 </section>
 
-  <section id="colorBlockSection">
+<div id="colorBlockSection">
 
-  </section>
+</div>
 </body>
 </html>
