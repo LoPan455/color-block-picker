@@ -23,7 +23,7 @@ $(document).ready(function(){
     var newDiv = $('<div class="colorBlock" id="'+i+'">');
     newDiv.data('idNumber',i);
     $('#colorBlockSection').append(newDiv);
-    $('#'+i).css({'width':'100px','height':'150px'});
+    $('#'+i).css({'width':'100px','height':'150px','display':'inline-block'});
   }
-  
+
 });
