@@ -25,4 +25,5 @@ $(document).ready(function(){
     $('#colorBlockSection').append(newDiv);
     $('#'+i).css({'width':'100px','height':'150px'});
   }
+  
 });

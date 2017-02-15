@@ -1,6 +1,5 @@
-/*.colorBlock {
-  height: 100px;
-  width: 100px;
+.colorBlock {
+  display: inline-block;
   background-color: blue;
 
-}*/
+}
