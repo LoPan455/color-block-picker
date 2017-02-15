@@ -67,7 +67,7 @@ $(document).ready(function(){
 
   console.log('the document has loaded');
 
-  //create the listener for confirming the color choice
+  //create the listener for confirming the color choice and appending to the DOM
   $('form').on('submit',function(event){
     event.preventDefault();
     console.log('confirm button clicked, we picked up this input: ', $(this).serializeArray());
@@ -81,11 +81,11 @@ $(document).ready(function(){
       colorId++;
       colorChoices.push(newColorObject);
     }
-
+    $('.colorBlock').remove();
     for (var i = 0; i < colorChoices.length; i++) {
       var newDiv = $('<div class="colorBlock" id="'+ colorChoices[i].id +'" data-color="'+colorChoices[i].colorName+'">');
       $('#colorBlockSection').append(newDiv);
-      $('#'+i).css({'width':'200px','height':'200px','display':'inline-block','background-color':''+ colorChoices[i].colorName +''});
+      $('#'+i).css({'background-color':''+ colorChoices[i].colorName +''});
     }
   });
 });
